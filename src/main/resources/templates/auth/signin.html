@@ -1,24 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Remy - Sign in</title>
-    <link rel="stylesheet" href="styles/global.css">
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="images/favicon.ico" type="image/x-icon">
-</head>
-<body>
-    <nav class="navigation">
-        <div class="navigation__title-holder">
-            <a href="/" class="navigation__title">Remy</a>
-        </div>
-        <a href="/about" class="navigation__link">About us</a>
-        <a href="/resume" class="navigation__link">Resume</a>
-        <a href="/login" class="navigation__link">Login</a>
-    </nav>
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Remy - Sign In</title>
+        <link rel="stylesheet" href="styles/global.css">
+        <link rel="stylesheet" href="styles/signin.css">
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon" href="images/favicon.ico" type="image/x-icon">
+    </head>
 
-    <main class="scale-up-center">
-    </main>
-</body>
+    <body>
+        <nav class="navigation">
+            <div class="navigation__title-holder">
+                <a href="/" class="navigation__title">Remy</a>
+            </div>
+            <a href="/about" class="navigation__link">About us</a>
+            <a href="/resume" class="navigation__link">Resume</a>
+            <a href="/login" class="navigation__link">Login</a>
+        </nav>
+
+        <main>
+            <section class="signin">
+                <h1 class="signin__title">Sign in to your account</h1>
+
+                <div th:fragment="content">
+                    <form name="f" th:action="@{/signin}" method="post">               
+                        <fieldset>
+                            <div class="form__block">
+                                <div th:if="${param.error}" class="alert alert-error">    
+                                    Invalid username and password.
+                                </div>
+                            </div>
+    
+                            <div class="form__block">
+                                <div th:if="${param.logout}" class="alert alert-success"> 
+                                    You have been logged out.
+                                </div>
+                            </div>
+    
+                            <div class="form__block">
+                                <label class="form-item__label" for="username">Username</label>
+                                <input class="form-item__input" type="text" id="username" name="username" placeholder="Enter username"/>    
+                            </div> 
+                            
+                            <div class="form__block">
+                                <label class="form-item__label" for="password">Password</label>
+                                <input class="form-item__input" type="password" id="password" name="password" placeholder="Enter password"/>  
+                            </div>  
+        
+                            <div class="form__block">
+                                <button class="form__button btn" type="submit">Log in</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </body>
 </html>
