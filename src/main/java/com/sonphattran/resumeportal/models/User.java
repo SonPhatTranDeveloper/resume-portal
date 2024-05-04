@@ -4,11 +4,12 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
+@Table(name = "my_user")
 @Data
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
     @Column(unique = true)
     private String username;
@@ -20,5 +21,5 @@ public class User {
     private String roles;
 
     @Column
-    private boolean isActive;
+    private boolean active;
 }
