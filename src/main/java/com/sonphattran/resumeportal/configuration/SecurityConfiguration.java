@@ -16,9 +16,13 @@ public class SecurityConfiguration {
         return http
                 .authorizeHttpRequests(auth ->
                     auth.requestMatchers("/home*").authenticated()
+                            .requestMatchers("/signin*").permitAll()
+                            .requestMatchers("/styles/**", "/scripts/**", "/images/**").permitAll()
                             .requestMatchers("/**").permitAll()
                 )
-                .formLogin(Customizer.withDefaults())
+                .formLogin(loginConfigurer ->
+                        loginConfigurer.loginPage("/signin")
+                )
                 .build();
     }
 }
