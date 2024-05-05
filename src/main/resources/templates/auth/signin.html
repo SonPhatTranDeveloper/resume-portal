@@ -1,23 +1,12 @@
 <html xmlns:th="https://www.thymeleaf.org">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Remy - Sign In</title>
-        <link rel="stylesheet" href="styles/global.css">
-        <link rel="stylesheet" href="styles/signin.css">
-        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-        <link rel="apple-touch-icon" href="images/favicon.ico" type="image/x-icon">
+        <div th:replace="general :: headerfiles" th:remove="tag"></div>
+        <title>Sign In</title>
+        <link th:href="@{/styles/signin.css}" rel="stylesheet">
     </head>
 
     <body>
-        <nav class="navigation">
-            <div class="navigation__title-holder">
-                <a href="/" class="navigation__title">Remy</a>
-            </div>
-            <a href="/about" class="navigation__link">About us</a>
-            <a href="/resume" class="navigation__link">Resume</a>
-            <a href="/login" class="navigation__link">Login</a>
-        </nav>
+        <nav th:replace="general :: header"></nav>
 
         <main>
             <section class="signin">

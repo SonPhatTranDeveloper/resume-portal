@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles">
+    <th:block th:fragment="headerfiles">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" th:href="@{images/favicon.ico}" type="image/x-icon">
+        <link rel="apple-touch-icon" th:href="@{images/favicon.ico}" type="image/x-icon">
+        <link th:href="@{/styles/global.css}" rel="stylesheet">
+    </th:block>
+</head>
+<body>
+    <nav th:fragment="header" class="navigation">
+        <div class="navigation__title-holder">
+            <a href="/" class="navigation__title">Remy</a>
+        </div>
+        <a href="/about" class="navigation__link">About us</a>
+        <a href="/resume" class="navigation__link">Resume</a>
+        <a href="/login" class="navigation__link">Login</a>
+    </nav>
+</html>

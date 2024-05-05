@@ -22,4 +22,13 @@ public class User {
 
     @Column
     private boolean active;
+
+    @Column(columnDefinition = "VARCHAR(255) DEFAULT 'Adam'")
+    private String firstName;
+
+    @Column(columnDefinition = "VARCHAR(255) DEFAULT 'Smith'")
+    private String lastName;
+
+    @Column(columnDefinition = "BOOLEAN DEFAULT FALSE")
+    private boolean hasUpdated;
 }
