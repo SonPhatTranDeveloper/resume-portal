@@ -1,0 +1,45 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <div th:replace="general :: headerfiles" th:remove="tag"></div>
+        <title>Profile Home</title>
+        <link th:href="@{/styles/home.css}" rel="stylesheet">
+    </head>
+
+    <body>
+        <nav th:replace="general :: header"></nav>
+
+        <main>
+            <section class="home">
+                <h1 class="home__title">
+                    <th:block th:if="${user.isUpdated()}" th:text="'Welcome back, ' + ${user.getFirstName()}"></th:block>
+                    <th:block th:unless="${user.isUpdated()}" th:text="'Hello, newcomer'"></th:block>
+                </h1>
+
+                <h2 class="home__subtitle">
+                    <th:block th:if="${user.isUpdated()}" th:text="'Modify your information if necessary'"></th:block>
+                    <th:block th:unless="${user.isUpdated()}" th:text="'Get started by filling in your information'"></th:block>
+                </h2>
+
+                <form class="home__form">
+                    <div class="form__row">
+                        <div class="form__row-item">
+                            <label class="form__label" for="firstname">First Name</label>
+                            <input class="form__input" type="text" id="firstname" name="firstname"
+                                   th:placeholder="${user.getFirstName()}"/>
+                        </div>
+
+                        <div class="form__row-item">
+                            <label class="form__label" for="firstname">Last Name</label>
+                            <input class="form__input" type="text" id="lastname" name="lastname"
+                                   th:placeholder="${user.getLastName()}"/>
+                        </div>
+                    </div>
+
+                    <div class="form__button-holder">
+                        <button class="form__button btn" type="submit">Update</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </body>
+</html>

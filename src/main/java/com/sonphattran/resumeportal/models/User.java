@@ -30,5 +30,5 @@ public class User {
     private String lastName;
 
     @Column(columnDefinition = "BOOLEAN DEFAULT FALSE")
-    private boolean hasUpdated;
+    private boolean updated;
 }
