@@ -2,7 +2,7 @@
 
 Remy is a web application that allows users to create, manage, and showcase their professional resumes online. It is built using the Spring Boot framework, leveraging Spring MVC for web development and Spring Security for authentication and authorization.
 
-![Remy](./images/remy.png)
+![Remy](./images/Remy.png)
 
 ## Features
 
