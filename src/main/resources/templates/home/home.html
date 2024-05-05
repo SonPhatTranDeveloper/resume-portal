@@ -20,18 +20,18 @@
                     <th:block th:unless="${user.isUpdated()}" th:text="'Get started by filling in your information'"></th:block>
                 </h2>
 
-                <form class="home__form">
+                <form class="home__form" action="#" th:action="@{/update/{path}(path = ${user.getId()})}" th:object="${user}" method="post">
                     <div class="form__row">
                         <div class="form__row-item">
                             <label class="form__label" for="firstname">First Name</label>
                             <input class="form__input" type="text" id="firstname" name="firstname"
-                                   th:placeholder="${user.getFirstName()}"/>
+                                   th:field="*{firstName}"/>
                         </div>
 
                         <div class="form__row-item">
                             <label class="form__label" for="firstname">Last Name</label>
                             <input class="form__input" type="text" id="lastname" name="lastname"
-                                   th:placeholder="${user.getLastName()}"/>
+                                   th:field="*{lastName}"/>
                         </div>
                     </div>
 

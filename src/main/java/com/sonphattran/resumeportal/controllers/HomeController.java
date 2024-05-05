@@ -18,6 +18,11 @@ public class HomeController {
     @Autowired
     private IUserService userService;
 
+    @GetMapping("/")
+    public String index(Model model) {
+        return "home/index";
+    }
+
     @GetMapping("/home")
     public String home(Model model) {
         // Get the user details

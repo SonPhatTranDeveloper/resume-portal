@@ -22,7 +22,10 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(auth ->
                     auth.requestMatchers("/home*").authenticated()
                             .requestMatchers("/signin*").permitAll()
-                            .requestMatchers("/styles/**", "/scripts/**", "/images/**").permitAll()
+                            .requestMatchers("/styles/**",
+                                    "/scripts/**",
+                                    "/images/**",
+                                    "/h2-console/**").permitAll()
                             .requestMatchers("/**").permitAll()
                 )
                 .formLogin(loginConfigurer ->
