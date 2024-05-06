@@ -2,6 +2,7 @@ package com.sonphattran.resumeportal.controllers;
 
 import com.sonphattran.resumeportal.authentication.AuthenticationFacade;
 import com.sonphattran.resumeportal.errors.UserNotFoundException;
+import com.sonphattran.resumeportal.models.Education;
 import com.sonphattran.resumeportal.models.User;
 import com.sonphattran.resumeportal.services.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,7 @@ public class HomeController {
 
         // Set the model details
         model.addAttribute("user", user);
+        model.addAttribute("educations", user.getEducation());
         return "home/home";
     }
 }

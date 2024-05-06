@@ -3,6 +3,8 @@ package com.sonphattran.resumeportal.models;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Entity
 @Table(name = "my_user")
 @Data
@@ -31,4 +33,22 @@ public class User {
 
     @Column(columnDefinition = "BOOLEAN DEFAULT FALSE")
     private boolean updated;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "my_user_id")
+    private List<Education> education;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", roles='" + roles + '\'' +
+                ", active=" + active +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", updated=" + updated +
+                '}';
+    }
 }

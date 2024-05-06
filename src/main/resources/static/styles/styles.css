@@ -1,0 +1,91 @@
+/* Body */
+html {
+    max-height: 100%;
+    font-size: 16px;
+}
+
+body {
+    min-height: 100%;
+}
+
+/* Main styling */
+.intro {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.intro__title {
+    font-family: "Poppins", sans-serif;
+    font-size: 4rem;
+    color: #F77F00;
+    margin-bottom: 3rem;
+}
+
+.intro__subtitle {
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.intro__image {
+    width: 50%;
+    margin-bottom: 3rem;
+}
+
+/* Button */
+.buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+.button:link {
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.5rem;
+    padding: 1.2rem 3rem;
+    background: #3A86FF;
+    color: #FFFFFF;
+    margin: 0 2rem;
+    border-radius: 10rem;
+}
+
+.button:visited {
+    color: #FFFFFF;
+}
+
+/* Animation */
+@-webkit-keyframes scale-up-center {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale(0.5);
+                transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+                transform: scale(1);
+    }
+}
+
+@keyframes scale-up-center {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale(0.5);
+                transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+                transform: scale(1);
+    }
+}
+
+.scale-up-center {
+	-webkit-animation: scale-up-center 0.8s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+	        animation: scale-up-center 0.8s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+  

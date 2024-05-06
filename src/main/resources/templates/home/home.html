@@ -40,6 +40,48 @@
                     </div>
                 </form>
             </section>
+
+            <section class="education">
+                <h2 class="education__title">Education</h2>
+                <p class="education__subtitle">Enter your education details</p>
+                <form class="education__form" action="#" th:action="@{/update/{path}/education(path = ${user.getId()})}" method="post">
+                    <div class="education__form-section" th:each="myEd: ${educations}">
+                        <div class="form__row">
+                            <div class="form__row-item">
+                                <label class="form__label" for="university">University</label>
+                                <input class="form__input" type="text" id="university" name="university"
+                                       th:value="${myEd.getUniversity()}"/>
+                            </div>
+
+                            <div class="form__row-item">
+                                <label class="form__label" for="period">Degree</label>
+                                <input class="form__input" type="text" id="period" name="period"
+                                       th:value="${myEd.getPeriod()}"/>
+                            </div>
+                        </div>
+
+                        <div class="form__row">
+                            <div class="form__row-item">
+                                <label class="form__label" for="degree">Degree</label>
+                                <input class="form__input" type="text" id="degree" name="degree"
+                                       th:value="${myEd.getDegree()}"/>
+                            </div>
+                        </div>
+
+                        <div class="form__row">
+                            <div class="form__row-item">
+                                <label class="form__label" for="details">Extra information</label>
+                                <textarea class="form__textarea" id="details" name="details" rows="5"
+                                       th:text="${myEd.getDetails()}"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form__button-holder">
+                        <button class="form__button btn" type="submit">Update</button>
+                    </div>
+                </form>
+            </section>
         </main>
     </body>
 </html>

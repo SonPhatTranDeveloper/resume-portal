@@ -1,8 +1,12 @@
 /* Styling for Home Page */
 
-.home {
+main {
     margin: 3rem auto;
     width: 80%;
+}
+
+.home {
+    margin-bottom: 3rem;
 }
 
 .home__title {
@@ -49,6 +53,15 @@
     margin-bottom: 1.5rem;
     width: 100%;
     padding: 1rem;
+    border: 1px solid #000;
+}
+
+.form__textarea {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.2rem;
+    padding: 1rem;
+    width: 100%;
+    border: 1px solid #000;
 }
 
 .form__button {
@@ -60,4 +73,23 @@
     cursor: pointer;
     border: none;
     padding: 1rem 2rem;
+}
+
+/* Education section */
+.education__title {
+    font-family: "Poppins", sans-serif;
+    font-size: 3rem;
+    color: #F77F00;
+    margin-bottom: 2rem;
+}
+
+.education__subtitle {
+    font-family: "Poppins", sans-serif;
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 3rem;
+}
+
+.education__form-section {
+    margin-bottom: 5rem;
 }
