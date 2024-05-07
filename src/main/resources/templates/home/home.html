@@ -20,7 +20,7 @@
                     <th:block th:unless="${user.isUpdated()}" th:text="'Get started by filling in your information'"></th:block>
                 </h2>
 
-                <form class="home__form" action="#" th:action="@{/update/{path}(path = ${user.getId()})}" th:object="${user}" method="post">
+                <form class="home__form" action="#" th:action="@{/users/{path}(path = ${user.getId()})}" th:object="${user}" method="post">
                     <div class="form__row">
                         <div class="form__row-item">
                             <label class="form__label" for="firstname">First Name</label>
@@ -44,7 +44,7 @@
             <section class="education">
                 <h2 class="education__title">Education</h2>
                 <p class="education__subtitle">Enter your education details</p>
-                <form class="education__form" action="#" th:action="@{/update/{path}/education(path = ${user.getId()})}" th:object="${user}" method="post">
+                <form class="education__form" action="#" th:action="@{/users/{path}/education(path = ${user.getId()})}" th:object="${user}" method="post">
                     <div class="education__form-section" th:each="myEd, itemState: *{education}">
                         <div class="form__row">
                             <div class="form__row-item">
@@ -78,6 +78,10 @@
                                           required
                                           th:field="*{education[__${itemState.index}__].details}"></textarea>
                             </div>
+                        </div>
+
+                        <div class="form__row">
+                            <a th:href="@{/users/{path}/education/delete/{id}(path = ${user.getId()}, id=*{education[__${itemState.index}__].id})}" class="education__form__remove-button">Remove education</a>
                         </div>
                     </div>
 

@@ -21,7 +21,7 @@ public class UpdateController {
     @Autowired
     private EducationService educationService;
 
-    @PostMapping("/update/{userId}")
+    @PostMapping("/users/{userId}")
     public RedirectView update(@PathVariable Long userId, @ModelAttribute("user") User user) {
         // Update
         userService.updateName(
@@ -33,7 +33,7 @@ public class UpdateController {
         return new RedirectView("/home");
     }
 
-    @PostMapping("/update/{userId}/education")
+    @PostMapping("/users/{userId}/education")
     public RedirectView updateEducation(
             @PathVariable Long userId,
             @ModelAttribute("user") User user,

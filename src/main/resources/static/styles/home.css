@@ -99,3 +99,13 @@ main {
 .education__form-section {
     margin-bottom: 5rem;
 }
+
+.education__form__remove-button {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: #d62828;
+    background: none;
+    border: none;
+    padding: 0;
+}
