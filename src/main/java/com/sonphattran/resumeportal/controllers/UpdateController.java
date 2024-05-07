@@ -51,6 +51,7 @@ public class UpdateController {
         }
 
         // Create a list of education
+        // TODO: Fix potential bugs of inconsistent lengths
         if (universities != null) {
             for (int i = 0; i < universities.length; i++) {
                 Education newEducation = new Education();
