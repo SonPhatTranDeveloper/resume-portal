@@ -50,12 +50,14 @@
                             <div class="form__row-item">
                                 <label class="form__label" for="university">University</label>
                                 <input class="form__input" type="text" id="university" name="university"
+                                       required
                                        th:field="*{education[__${itemState.index}__].university}"/>
                             </div>
 
                             <div class="form__row-item">
                                 <label class="form__label" for="period">Degree</label>
                                 <input class="form__input" type="text" id="period" name="period"
+                                       required
                                        th:field="*{education[__${itemState.index}__].period}"/>
                             </div>
                         </div>
@@ -64,6 +66,7 @@
                             <div class="form__row-item">
                                 <label class="form__label" for="degree">Degree</label>
                                 <input class="form__input" type="text" id="degree" name="degree"
+                                       required
                                        th:field="*{education[__${itemState.index}__].degree}"/>
                             </div>
                         </div>
@@ -72,16 +75,78 @@
                             <div class="form__row-item">
                                 <label class="form__label" for="details">Extra information</label>
                                 <textarea class="form__textarea" id="details" name="details" rows="5"
+                                          required
                                           th:field="*{education[__${itemState.index}__].details}"></textarea>
                             </div>
                         </div>
                     </div>
 
+                    <div class="education__form__placeholder"></div>
+
                     <div class="form__button-holder">
+                        <button class="education__form__add-button form__add-button" type="button">Add Education</button>
                         <button class="form__button btn" type="submit">Update</button>
                     </div>
                 </form>
             </section>
         </main>
     </body>
+
+    <script>
+        // Get the current new university section count
+        let sectionCount = 0;
+        const buttonEducation = document.querySelector(".education__form__add-button");
+        const placeholderEducation = document.querySelector(".education__form__placeholder");
+
+        // Add new section
+        function addNewEducationSection() {
+            // Increase the section count
+            sectionCount += 1;
+
+            // Create a new div
+            const div = document.createElement("div");
+            div.classList.add("education__form-section")
+
+            // Add content
+            div.innerHTML = `
+                <div class="form__row">
+                            <div class="form__row-item">
+                                <label class="form__label" for="new_university_${sectionCount}">University</label>
+                                <input class="form__input" type="text" id="new_university_${sectionCount}" name="new_university" required
+                                       th:placeholder="'Enter university'"/>
+                            </div>
+
+                            <div class="form__row-item">
+                                <label class="form__label" for="new_period_${sectionCount}">Degree</label>
+                                <input class="form__input" type="text" id="new_period_${sectionCount}" name="new_period" required
+                                       th:placeholder="'Enter period'"/>
+                            </div>
+                        </div>
+
+                        <div class="form__row">
+                            <div class="form__row-item">
+                                <label class="form__label" for="new_degree_${sectionCount}">Degree</label>
+                                <input class="form__input" type="text" id="new_degree_${sectionCount}" name="new_degree" required
+                                       th:placeholder="'Enter new degree'"/>
+                            </div>
+                        </div>
+
+                        <div class="form__row">
+                            <div class="form__row-item">
+                                <label class="form__label" for="new_details_${sectionCount}">Extra information</label>
+                                <textarea class="form__textarea" id="new_details_${sectionCount}" name="new_details" rows="5" required
+                                          th:placeholder="'Enter new details'"></textarea>
+                            </div>
+                        </div>
+            `
+
+            // Add to form
+            placeholderEducation.appendChild(div);
+        }
+
+        // Set on click
+        buttonEducation.addEventListener("click", function() {
+            addNewEducationSection()
+        });
+    </script>
 </html>

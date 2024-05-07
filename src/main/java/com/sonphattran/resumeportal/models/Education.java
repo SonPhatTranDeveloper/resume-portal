@@ -25,6 +25,15 @@ public class Education {
     @Column(columnDefinition = "VARCHAR(255) DEFAULT 'Period'")
     private String period;
 
+    public Education() {}
+
+    public Education(String university, String degree, String details, String period) {
+        this.university = university;
+        this.degree = degree;
+        this.details = details;
+        this.period = period;
+    }
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "my_user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)

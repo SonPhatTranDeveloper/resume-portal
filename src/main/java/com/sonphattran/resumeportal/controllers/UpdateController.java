@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
+
 
 @Controller
 public class UpdateController {
@@ -32,13 +34,33 @@ public class UpdateController {
     }
 
     @PostMapping("/update/{userId}/education")
-    public RedirectView updateEducation(@PathVariable Long userId, @ModelAttribute("user") User user) {
+    public RedirectView updateEducation(
+            @PathVariable Long userId,
+            @ModelAttribute("user") User user,
+            @RequestParam(value = "new_university", required = false) String[] universities,
+            @RequestParam(value = "new_degree", required = false) String[] degree,
+            @RequestParam(value = "new_period", required = false) String[] period,
+            @RequestParam(value = "new_details", required = false) String[] details
+    ) {
         // Set user
         user.setId(userId);
 
         // Set education user
         for (Education education : user.getEducation()) {
             education.setUser(user);
+        }
+
+        // Create a list of education
+        if (universities != null) {
+            for (int i = 0; i < universities.length; i++) {
+                Education newEducation = new Education();
+                newEducation.setUser(user);
+                newEducation.setUniversity(universities[i]);
+                newEducation.setDegree(degree[i]);
+                newEducation.setPeriod(period[i]);
+                newEducation.setDetails(details[i]);
+                user.getEducation().add(newEducation);
+            }
         }
 
         // Delete all and save
