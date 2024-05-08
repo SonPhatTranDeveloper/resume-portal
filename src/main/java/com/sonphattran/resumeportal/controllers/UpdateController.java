@@ -1,8 +1,10 @@
 package com.sonphattran.resumeportal.controllers;
 
 import com.sonphattran.resumeportal.models.Education;
+import com.sonphattran.resumeportal.models.Skill;
 import com.sonphattran.resumeportal.models.User;
 import com.sonphattran.resumeportal.services.user.EducationService;
+import com.sonphattran.resumeportal.services.user.SkillService;
 import com.sonphattran.resumeportal.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,9 @@ public class UpdateController {
 
     @Autowired
     private EducationService educationService;
+
+    @Autowired
+    private SkillService skillService;
 
     @PostMapping("/users/{userId}")
     public RedirectView update(@PathVariable Long userId, @ModelAttribute("user") User user) {
@@ -78,6 +83,51 @@ public class UpdateController {
     public RedirectView removeEducation(@PathVariable Long userId, @PathVariable Long educationId) {
         // Remove education id
         educationService.deleteEducationById(educationId);
+        return new RedirectView("/home");
+    }
+
+    @PostMapping("/users/{userId}/skills")
+    public RedirectView updateSkills(
+            @PathVariable Long userId,
+            @ModelAttribute("user") User user,
+            @RequestParam(value = "new_skill", required = false) String[] newSkill) {
+        // Set user
+        user.setId(userId);
+
+        // Create user skills
+        if (user.getSkills() == null) {
+            user.setSkills(new ArrayList<>());
+        }
+
+        // Set the skill user id
+        for (Skill skill : user.getSkills()) {
+            skill.setUser(user);
+        }
+
+        // Add new skills
+        if (newSkill != null) {
+            for (String mySkill : newSkill) {
+                // Create new skill
+                Skill skill = new Skill();
+                skill.setUser(user);
+                skill.setName(mySkill);
+
+                // Add to user skill
+                user.getSkills().add(skill);
+            }
+        }
+
+        // Delete all and save
+        skillService.deleteSkillByUserId(userId);
+        skillService.saveAll(user.getSkills());
+        return new RedirectView("/home");
+    }
+
+    @GetMapping("/users/{userId}/skills/delete/{skillId}")
+    public RedirectView removeSkill(
+            @PathVariable Long userId,
+            @PathVariable Long skillId) {
+        skillService.deleteSkillById(skillId);
         return new RedirectView("/home");
     }
 }

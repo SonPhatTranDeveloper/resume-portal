@@ -3,6 +3,7 @@ package com.sonphattran.resumeportal.models;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -36,7 +37,11 @@ public class User {
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "my_user_id")
-    private List<Education> education;
+    private List<Education> education = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "my_user_id")
+    private List<Skill> skills = new ArrayList<>();
 
     @Override
     public String toString() {
