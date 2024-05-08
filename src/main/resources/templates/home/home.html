@@ -55,7 +55,7 @@
                             </div>
 
                             <div class="form__row-item">
-                                <label class="form__label" for="period">Degree</label>
+                                <label class="form__label" for="period">Period</label>
                                 <input class="form__input" type="text" id="period" name="period"
                                        required
                                        th:field="*{education[__${itemState.index}__].period}"/>
@@ -81,7 +81,8 @@
                         </div>
 
                         <div class="form__row">
-                            <a th:href="@{/users/{path}/education/delete/{id}(path = ${user.getId()}, id=*{education[__${itemState.index}__].id})}" class="education__form__remove-button">Remove education</a>
+                            <a th:href="@{/users/{path}/education/delete/{id}(path = ${user.getId()}, id=*{education[__${itemState.index}__].id})}"
+                               class="education__form__remove-button">Remove education</a>
                         </div>
                     </div>
 
@@ -114,38 +115,48 @@
             // Add content
             div.innerHTML = `
                 <div class="form__row">
-                            <div class="form__row-item">
-                                <label class="form__label" for="new_university_${sectionCount}">University</label>
-                                <input class="form__input" type="text" id="new_university_${sectionCount}" name="new_university" required
-                                       th:placeholder="'Enter university'"/>
-                            </div>
+                    <div class="form__row-item">
+                        <label class="form__label" for="new_university_${sectionCount}">University</label>
+                        <input class="form__input" type="text" id="new_university_${sectionCount}" name="new_university" required
+                               th:placeholder="'Enter university'"/>
+                    </div>
 
-                            <div class="form__row-item">
-                                <label class="form__label" for="new_period_${sectionCount}">Degree</label>
-                                <input class="form__input" type="text" id="new_period_${sectionCount}" name="new_period" required
-                                       th:placeholder="'Enter period'"/>
-                            </div>
-                        </div>
+                    <div class="form__row-item">
+                        <label class="form__label" for="new_period_${sectionCount}">Period</label>
+                        <input class="form__input" type="text" id="new_period_${sectionCount}" name="new_period" required
+                               th:placeholder="'Enter period'"/>
+                    </div>
+                </div>
 
-                        <div class="form__row">
-                            <div class="form__row-item">
-                                <label class="form__label" for="new_degree_${sectionCount}">Degree</label>
-                                <input class="form__input" type="text" id="new_degree_${sectionCount}" name="new_degree" required
-                                       th:placeholder="'Enter new degree'"/>
-                            </div>
-                        </div>
+                <div class="form__row">
+                    <div class="form__row-item">
+                        <label class="form__label" for="new_degree_${sectionCount}">Degree</label>
+                        <input class="form__input" type="text" id="new_degree_${sectionCount}" name="new_degree" required
+                               th:placeholder="'Enter new degree'"/>
+                    </div>
+                </div>
 
-                        <div class="form__row">
-                            <div class="form__row-item">
-                                <label class="form__label" for="new_details_${sectionCount}">Extra information</label>
-                                <textarea class="form__textarea" id="new_details_${sectionCount}" name="new_details" rows="5" required
-                                          th:placeholder="'Enter new details'"></textarea>
-                            </div>
-                        </div>
+                <div class="form__row">
+                    <div class="form__row-item">
+                        <label class="form__label" for="new_details_${sectionCount}">Extra information</label>
+                        <textarea class="form__textarea" id="new_details_${sectionCount}" name="new_details" rows="5" required
+                                  th:placeholder="'Enter new details'"></textarea>
+                    </div>
+                </div>
+
+                <div class="form__row">
+                    <a href="#" class="education__form__remove-button">Remove education</a>
+                </div>
             `
 
             // Add to form
             placeholderEducation.appendChild(div);
+
+            // Set on click
+            const removeButton = div.querySelector(".education__form__remove-button");
+            removeButton.addEventListener("click", function() {
+                div.remove();
+            });
         }
 
         // Set on click

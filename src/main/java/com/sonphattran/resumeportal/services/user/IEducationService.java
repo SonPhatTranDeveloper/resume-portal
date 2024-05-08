@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface IEducationService {
     void deleteEducationByUserId(Long userId);
+    void deleteEducationById(Long educationId);
     void saveAll(List<Education> educations);
 }
