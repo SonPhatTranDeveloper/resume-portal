@@ -43,6 +43,10 @@ public class User {
     @JoinColumn(name = "my_user_id")
     private List<Skill> skills = new ArrayList<>();
 
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "my_user_id")
+    private List<Experience> experiences = new ArrayList<>();
+
     @Override
     public String toString() {
         return "User{" +
