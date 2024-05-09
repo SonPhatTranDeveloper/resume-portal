@@ -95,32 +95,11 @@
                 </form>
             </section>
 
-            <section class="skills" id="skills">
-                <h2 class="skills__title">Skills</h2>
-                <p class="skills__subtitle">Enter the skills you have</p>
-                <form class="skill__form" th:action="@{/users/{userId}/skills(userId = ${user.getId()})}" th:object="${user}" method="post">
-                    <div class="form__row skill-form__section" th:each="mySkill, itemState: *{skills}">
-                        <input class="form__input" type="text" id="skill" name="skill"
-                               required
-                               th:field="*{skills[__${itemState.index}__].name}"/>
-                        <a th:href="@{/users/{path}/skills/delete/{id}(path = ${user.getId()}, id=*{skills[__${itemState.index}__].id})}"
-                           class="skill__form__remove-button">Remove</a>
-                    </div>
-
-                    <div class="skill__form__placeholder"></div>
-
-                    <div class="form__button-holder">
-                        <button class="skill__form__add-button form__add-button" type="button">Add Skill</button>
-                        <button class="form__button btn" type="submit">Update</button>
-                    </div>
-                </form>
-            </section>
-
             <section class="experiences" id="experiences">
                 <h2 class="experience__title">Experience</h2>
                 <p class="experience__subtitle">List the experiences that you have</p>
                 <form class="education__form" action="#" th:action="@{/users/{path}/experience(path = ${user.getId()})}" th:object="${user}" method="post">
-                    <div class="education__form-section" th:each="myEd, itemState: *{experiences}">
+                    <div class="experience__form__section" th:each="myEd, itemState: *{experiences}">
                         <div class="form__row">
                             <div class="form__row-item">
                                 <label class="form__label" for="company">Company</label>
@@ -169,6 +148,27 @@
                     </div>
                 </form>
             </section>
+
+            <section class="skills" id="skills">
+                <h2 class="skills__title">Skills</h2>
+                <p class="skills__subtitle">Enter the skills you have</p>
+                <form class="skill__form" th:action="@{/users/{userId}/skills(userId = ${user.getId()})}" th:object="${user}" method="post">
+                    <div class="form__row skill-form__section" th:each="mySkill, itemState: *{skills}">
+                        <input class="form__input" type="text" id="skill" name="skill"
+                               required
+                               th:field="*{skills[__${itemState.index}__].name}"/>
+                        <a th:href="@{/users/{path}/skills/delete/{id}(path = ${user.getId()}, id=*{skills[__${itemState.index}__].id})}"
+                           class="skill__form__remove-button">Remove</a>
+                    </div>
+
+                    <div class="skill__form__placeholder"></div>
+
+                    <div class="form__button-holder">
+                        <button class="skill__form__add-button form__add-button" type="button">Add Skill</button>
+                        <button class="form__button btn" type="submit">Update</button>
+                    </div>
+                </form>
+            </section>
         </main>
     </body>
 
@@ -176,12 +176,77 @@
         // Get the current new university section count
         let educationSectionCount = 0;
         let skillSectionCount = 0;
+        let experienceSectionCount = 0;
 
         const buttonEducation = document.querySelector(".education__form__add-button");
         const placeholderEducation = document.querySelector(".education__form__placeholder");
 
         const buttonSkill = document.querySelector(".skill__form__add-button");
         const placeholderSkill = document.querySelector(".skill__form__placeholder");
+
+        const buttonExperience = document.querySelector(".experience__form__add-button");
+        const placeHolderExperience = document.querySelector(".experience__form__placeholder");
+
+        // Add to experience section
+        function addNewExperience() {
+            // Increase experience section count
+            experienceSectionCount += 1;
+
+            // Create a new div
+            const div = document.createElement("div");
+            div.classList.add("experience__form__section");
+
+            // Add inner HTML
+            div.innerHTML = `
+                <div class="form__row">
+                        <div class="form__row-item">
+                            <label class="form__label" for="new_company_${experienceSectionCount}">Company</label>
+                            <input class="form__input" type="text" id="new_company_${experienceSectionCount}" name="new_company"
+                                   required
+                                   th:text="'Company'"/>
+                        </div>
+
+                        <div class="form__row-item">
+                            <label class="form__label" for="new_exp_period_${experienceSectionCount}">Period</label>
+                            <input class="form__input" type="text" id="new_exp_period_${experienceSectionCount}" name="new_exp_period"
+                                   required
+                                   th:text="'Period'"/>
+                        </div>
+                    </div>
+
+                    <div class="form__row">
+                        <div class="form__row-item">
+                            <label class="form__label" for="new_title_${experienceSectionCount}">Title</label>
+                            <input class="form__input" type="text" id="new_title_${experienceSectionCount}" name="new_title"
+                                   required
+                                   th:text="Title'"/>
+                        </div>
+                    </div>
+
+                    <div class="form__row">
+                        <div class="form__row-item">
+                            <label class="form__label" for="new_desc_${experienceSectionCount}">Description</label>
+                            <textarea class="form__textarea" id="new_desc_${experienceSectionCount}" name="new_desc" rows="5"
+                                      required
+                                      th:text="'Description'"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form__row">
+                        <a class="experience__form__remove-button">Remove experience</a>
+                    </div>
+                </div>
+            `;
+
+            // Add button on click listener
+            const button = div.querySelector(".experience__form__remove-button");
+            button.addEventListener("click", function() {
+                div.remove();
+            })
+
+            // Add to placeholder
+            placeHolderExperience.appendChild(div);
+        }
 
         // Add new skill section
         function addNewSkillSection() {
@@ -273,6 +338,9 @@
         });
         buttonSkill.addEventListener("click", function() {
             addNewSkillSection();
-        })
+        });
+        buttonExperience.addEventListener("click", function() {
+           addNewExperience();
+        });
     </script>
 </html>

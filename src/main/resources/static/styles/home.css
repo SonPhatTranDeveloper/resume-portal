@@ -96,7 +96,7 @@ main {
 }
 
 .education__form-section {
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
 }
 
 .skill__form__remove-button, .education__form__remove-button, .experience__form__remove-button {
@@ -125,3 +125,6 @@ main {
 }
 
 /* Experience section */
+.experience__form__section {
+    margin-bottom: 3rem;
+}

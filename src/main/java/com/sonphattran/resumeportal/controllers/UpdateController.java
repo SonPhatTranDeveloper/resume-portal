@@ -133,13 +133,18 @@ public class UpdateController {
             @PathVariable Long userId,
             @PathVariable Long skillId) {
         skillService.deleteSkillById(skillId);
-        return new RedirectView("/home");
+        return new RedirectView("/home#skills");
     }
 
     @PostMapping("/users/{userId}/experience")
     public RedirectView updateExperience(
             @PathVariable Long userId,
-            @ModelAttribute("user") User user) {
+            @ModelAttribute("user") User user,
+            @RequestParam(value = "new_company", required = false) String[] companies,
+            @RequestParam(value = "new_title", required = false) String[] titles,
+            @RequestParam(value = "new_exp_period", required = false) String[] periods,
+            @RequestParam(value = "new_desc", required = false) String[] descriptions
+            ) {
         // Set user id
         user.setId(userId);
 
@@ -152,9 +157,31 @@ public class UpdateController {
             experience.setUser(user);
         }
 
+        // Add new experiences
+        if (companies != null) {
+            for (int i = 0; i < companies.length; i++) {
+                Experience newExperience = new Experience();
+                newExperience.setUser(user);
+                newExperience.setCompany(companies[i]);
+                newExperience.setTitle(titles[i]);
+                newExperience.setPeriod(periods[i]);
+                newExperience.setDescription(descriptions[i]);
+                user.getExperiences().add(newExperience);
+            }
+        }
+
+
         // Update the experiences
         experienceService.deleteExperienceByUserId(userId);
         experienceService.saveAll(user.getExperiences());
+        return new RedirectView("/home#experiences");
+    }
+
+    @GetMapping("/users/{userId}/experience/delete/{experienceId}")
+    public RedirectView removeExperience(
+            @PathVariable Long userId,
+            @PathVariable Long experienceId) {
+        experienceService.deleteExperienceById(experienceId);
         return new RedirectView("/home#experiences");
     }
 }
