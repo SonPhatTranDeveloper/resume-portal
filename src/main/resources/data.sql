@@ -17,3 +17,9 @@ INSERT INTO
 VALUES
     (1, 1, 'Web Programming'),
     (2, 1, 'Data Science');
+
+/* Insert experience */
+INSERT INTO
+    experience (id, my_user_id, company, title, description, period)
+VALUES
+    (1, 1, 'Asia Commercial Bank', 'AI Engineer', 'Lead AI development', 'Feb 2022 - Dec 2022');

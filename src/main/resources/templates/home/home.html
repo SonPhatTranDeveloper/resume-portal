@@ -41,7 +41,7 @@
                 </form>
             </section>
 
-            <section class="education">
+            <section class="education" id="educations">
                 <h2 class="education__title">Education</h2>
                 <p class="education__subtitle">Enter your education details</p>
                 <form class="education__form" action="#" th:action="@{/users/{path}/education(path = ${user.getId()})}" th:object="${user}" method="post">
@@ -95,10 +95,10 @@
                 </form>
             </section>
 
-            <section class="skills">
+            <section class="skills" id="skills">
                 <h2 class="skills__title">Skills</h2>
                 <p class="skills__subtitle">Enter the skills you have</p>
-                <form class="education__form" th:action="@{/users/{userId}/skills(userId = ${user.getId()})}" th:object="${user}" method="post">
+                <form class="skill__form" th:action="@{/users/{userId}/skills(userId = ${user.getId()})}" th:object="${user}" method="post">
                     <div class="form__row skill-form__section" th:each="mySkill, itemState: *{skills}">
                         <input class="form__input" type="text" id="skill" name="skill"
                                required
@@ -111,6 +111,60 @@
 
                     <div class="form__button-holder">
                         <button class="skill__form__add-button form__add-button" type="button">Add Skill</button>
+                        <button class="form__button btn" type="submit">Update</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="experiences" id="experiences">
+                <h2 class="experience__title">Experience</h2>
+                <p class="experience__subtitle">List the experiences that you have</p>
+                <form class="education__form" action="#" th:action="@{/users/{path}/experience(path = ${user.getId()})}" th:object="${user}" method="post">
+                    <div class="education__form-section" th:each="myEd, itemState: *{experiences}">
+                        <div class="form__row">
+                            <div class="form__row-item">
+                                <label class="form__label" for="company">Company</label>
+                                <input class="form__input" type="text" id="company" name="company"
+                                       required
+                                       th:field="*{experiences[__${itemState.index}__].company}"/>
+                            </div>
+
+                            <div class="form__row-item">
+                                <label class="form__label" for="exp_period">Period</label>
+                                <input class="form__input" type="text" id="exp_period" name="exp_period"
+                                       required
+                                       th:field="*{experiences[__${itemState.index}__].period}"/>
+                            </div>
+                        </div>
+
+                        <div class="form__row">
+                            <div class="form__row-item">
+                                <label class="form__label" for="title">Title</label>
+                                <input class="form__input" type="text" id="title" name="title"
+                                       required
+                                       th:field="*{experiences[__${itemState.index}__].title}"/>
+                            </div>
+                        </div>
+
+                        <div class="form__row">
+                            <div class="form__row-item">
+                                <label class="form__label" for="desc">Description</label>
+                                <textarea class="form__textarea" id="desc" name="desc" rows="5"
+                                          required
+                                          th:field="*{experiences[__${itemState.index}__].description}"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form__row">
+                            <a th:href="@{/users/{path}/experience/delete/{id}(path = ${user.getId()}, id=*{experiences[__${itemState.index}__].id})}"
+                               class="experience__form__remove-button">Remove experience</a>
+                        </div>
+                    </div>
+
+                    <div class="experience__form__placeholder"></div>
+
+                    <div class="form__button-holder">
+                        <button class="experience__form__add-button form__add-button" type="button">Add Experience</button>
                         <button class="form__button btn" type="submit">Update</button>
                     </div>
                 </form>

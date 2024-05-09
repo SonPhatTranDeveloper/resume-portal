@@ -1,9 +1,11 @@
 package com.sonphattran.resumeportal.controllers;
 
 import com.sonphattran.resumeportal.models.Education;
+import com.sonphattran.resumeportal.models.Experience;
 import com.sonphattran.resumeportal.models.Skill;
 import com.sonphattran.resumeportal.models.User;
 import com.sonphattran.resumeportal.services.user.EducationService;
+import com.sonphattran.resumeportal.services.user.ExperienceService;
 import com.sonphattran.resumeportal.services.user.SkillService;
 import com.sonphattran.resumeportal.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class UpdateController {
 
     @Autowired
     private SkillService skillService;
+
+    @Autowired
+    private ExperienceService experienceService;
 
     @PostMapping("/users/{userId}")
     public RedirectView update(@PathVariable Long userId, @ModelAttribute("user") User user) {
@@ -76,14 +81,14 @@ public class UpdateController {
         // Delete all and save
         educationService.deleteEducationByUserId(userId);
         educationService.saveAll(user.getEducation());
-        return new RedirectView("/home");
+        return new RedirectView("/home#educations");
     }
 
     @GetMapping("/users/{userId}/education/delete/{educationId}")
     public RedirectView removeEducation(@PathVariable Long userId, @PathVariable Long educationId) {
         // Remove education id
         educationService.deleteEducationById(educationId);
-        return new RedirectView("/home");
+        return new RedirectView("/home#educations");
     }
 
     @PostMapping("/users/{userId}/skills")
@@ -120,7 +125,7 @@ public class UpdateController {
         // Delete all and save
         skillService.deleteSkillByUserId(userId);
         skillService.saveAll(user.getSkills());
-        return new RedirectView("/home");
+        return new RedirectView("/home#skills");
     }
 
     @GetMapping("/users/{userId}/skills/delete/{skillId}")
@@ -129,5 +134,27 @@ public class UpdateController {
             @PathVariable Long skillId) {
         skillService.deleteSkillById(skillId);
         return new RedirectView("/home");
+    }
+
+    @PostMapping("/users/{userId}/experience")
+    public RedirectView updateExperience(
+            @PathVariable Long userId,
+            @ModelAttribute("user") User user) {
+        // Set user id
+        user.setId(userId);
+
+        // Get the experience
+        if (user.getExperiences() == null) {
+            user.setExperiences(new ArrayList<>());
+        }
+
+        for (Experience experience : user.getExperiences()) {
+            experience.setUser(user);
+        }
+
+        // Update the experiences
+        experienceService.deleteExperienceByUserId(userId);
+        experienceService.saveAll(user.getExperiences());
+        return new RedirectView("/home#experiences");
     }
 }

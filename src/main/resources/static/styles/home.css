@@ -81,14 +81,14 @@ main {
 }
 
 /* Education section */
-.skills__title, .education__title {
+.skills__title, .education__title, .experience__title {
     font-family: "Poppins", sans-serif;
     font-size: 3rem;
     color: #F77F00;
     margin-bottom: 2rem;
 }
 
-.skills__subtitle, .education__subtitle {
+.skills__subtitle, .education__subtitle, .experience__subtitle {
     font-family: "Poppins", sans-serif;
     font-size: 2rem;
     font-weight: 300;
@@ -99,7 +99,7 @@ main {
     margin-bottom: 5rem;
 }
 
-.skill__form__remove-button, .education__form__remove-button {
+.skill__form__remove-button, .education__form__remove-button, .experience__form__remove-button {
     font-family: "Poppins", sans-serif;
     font-size: 1.5rem;
     text-decoration: none;
@@ -110,6 +110,10 @@ main {
 }
 
 /* Skill Section */
+.skill__form {
+    margin-bottom: 3rem;
+}
+
 .skill-form__section {
     width: 50%;
 }
@@ -119,3 +123,5 @@ main {
     margin: auto 0;
     cursor: pointer;
 }
+
+/* Experience section */
