@@ -5,13 +5,13 @@ import com.sonphattran.resumeportal.helpers.StringHelper;
 import com.sonphattran.resumeportal.models.User;
 import com.sonphattran.resumeportal.services.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.stream.Collectors;
 
 @Controller
 public class HomeController {
@@ -23,6 +23,12 @@ public class HomeController {
 
     @GetMapping("/")
     public String index(Model model) {
+        // Check if user is logged in
+        Authentication authentication = authenticationFacade.getAuthentication();
+        boolean isLoggedIn = authentication != null && !(authentication instanceof AnonymousAuthenticationToken);
+
+        // Pass to model
+        model.addAttribute("isLoggedIn", isLoggedIn);
         return "home/index";
     }
 

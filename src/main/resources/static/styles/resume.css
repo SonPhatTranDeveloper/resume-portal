@@ -6,6 +6,10 @@ main {
     background: #000;
 }
 
+li, p {
+    line-height: 1.25rem;
+}
+
 .resume {
     height: 100%;
     background: #FFF;

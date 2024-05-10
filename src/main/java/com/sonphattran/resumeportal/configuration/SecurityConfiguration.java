@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AndRequestMatcher;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -22,6 +24,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(auth ->
                     auth.requestMatchers("/home*").authenticated()
                             .requestMatchers("/signin*").permitAll()
+                            .requestMatchers("/signout*").permitAll()
                             .requestMatchers("/styles/**",
                                     "/scripts/**",
                                     "/images/**",
@@ -30,6 +33,12 @@ public class SecurityConfiguration {
                 )
                 .formLogin(loginConfigurer ->
                         loginConfigurer.loginPage("/signin")
+                )
+                .logout(logoutConfigurer -> logoutConfigurer
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/signout"))
+                        .logoutSuccessUrl("/")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
                 )
                 .build();
     }

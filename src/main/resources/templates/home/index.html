@@ -10,9 +10,9 @@
         <div class="navigation__title-holder">
             <a th:href="@{/static}" class="navigation__title">Remy</a>
         </div>
-        <a th:href="@{/about}" class="navigation__link">About us</a>
-        <a th:href="@{/resume}" class="navigation__link">Resume</a>
-        <a th:href="@{/signin}" class="navigation__link">Login</a>
+
+        <a th:href="@{/signin}" class="navigation__link" th:unless="${isLoggedIn}">Sign In</a>
+        <a th:href="@{/signout}" class="navigation__link" th:if="${isLoggedIn}">Sign Out</a>
     </nav>
 
     <main class="scale-up-center">
@@ -21,8 +21,7 @@
             <h2 class="intro__subtitle">completely free</h2>
             <img class="intro__image" th:src="@{/images/remy.png}" alt="Remy Resume">
             <div class="buttons">
-                <a class="button" th:href="@{/home}">Create</a>
-                <a class="button" th:href="@{/resume}">View</a>
+                <a class="button" th:href="@{/home}">Get Started</a>
             </div>
         </section>
     </main>
