@@ -1,0 +1,62 @@
+body, main {
+    min-height: 100vh;
+}
+
+main {
+    background: #000;
+}
+
+.resume {
+    height: 100%;
+    background: #FFF;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    font-size: 1rem;
+    aspect-ratio: 1 / 1.414;
+}
+
+.resume__title {
+    margin-bottom: 2rem;
+}
+
+.resume__title-name {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.resume__experience, .resume__education {
+    margin-bottom: 2rem;
+}
+
+.resume__education-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #000;
+    margin-bottom: 1rem;
+}
+
+.education-item {
+    margin-bottom: 1.5rem;
+}
+
+.education-item__title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.education-item__university {
+    margin-bottom: 1rem;
+}
+
+.education-item__details {
+    margin-left: 1.2rem;
+    list-style: disc;
+}
+
+.education-item__details-item {
+    margin-bottom: 0.5rem;
+}

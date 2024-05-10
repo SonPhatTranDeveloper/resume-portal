@@ -15,6 +15,8 @@
                     <th:block th:unless="${user.isUpdated()}" th:text="'Hello, newcomer'"></th:block>
                 </h1>
 
+                <a class="home__view-button" th:href="@{/users/{path}/view(path = ${user.getId()})}">View Resume</a>
+
                 <h2 class="home__subtitle">
                     <th:block th:if="${user.isUpdated()}" th:text="'Modify your information if necessary'"></th:block>
                     <th:block th:unless="${user.isUpdated()}" th:text="'Get started by filling in your information'"></th:block>

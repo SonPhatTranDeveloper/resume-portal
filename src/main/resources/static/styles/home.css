@@ -23,6 +23,24 @@ main {
     margin-bottom: 3rem;
 }
 
+.home__view-button:link {
+    display: inline-block;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.5rem;
+    background: #f77f00;
+    color: #FFFFFF;
+    cursor: pointer;
+    border: none;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    margin-bottom: 3rem;
+}
+
+.home__view-button:visited {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
 .form__button-holder {
     display: flex;
     flex-direction: row;
@@ -63,7 +81,7 @@ main {
     border: 1px solid #000;
 }
 
-.form__button, .form__add-button {
+.form__button, .form__add-button, .home__view-button {
     display: inline-block;
     font-family: "Poppins", sans-serif;
     font-size: 1.2rem;

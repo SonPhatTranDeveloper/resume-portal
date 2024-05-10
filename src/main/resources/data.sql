@@ -9,7 +9,8 @@ VALUES
 INSERT INTO
     education (id, my_user_id, university, degree, details, period)
 VALUES
-    (1, 1, 'Australian National University', 'Master of Computing', 'Extracurricular', 'Dec 2024');
+    (1, 1, 'Australian National University', 'Master of Computing', 'First Class Honors. Vice Chancellor Scholarship', 'Dec 2024'),
+    (2, 1, 'RMIT', 'Bachelor of IT', 'First Class Honors. Won competitions.', 'Dec 2024');
 
 /* Insert skill */
 INSERT INTO

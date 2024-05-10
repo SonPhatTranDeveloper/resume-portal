@@ -4,10 +4,7 @@ import com.sonphattran.resumeportal.models.Education;
 import com.sonphattran.resumeportal.models.Experience;
 import com.sonphattran.resumeportal.models.Skill;
 import com.sonphattran.resumeportal.models.User;
-import com.sonphattran.resumeportal.services.user.EducationService;
-import com.sonphattran.resumeportal.services.user.ExperienceService;
-import com.sonphattran.resumeportal.services.user.SkillService;
-import com.sonphattran.resumeportal.services.user.UserService;
+import com.sonphattran.resumeportal.services.user.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -19,16 +16,16 @@ import java.util.ArrayList;
 @Controller
 public class UpdateController {
     @Autowired
-    private UserService userService;
+    private IUserService userService;
 
     @Autowired
-    private EducationService educationService;
+    private IEducationService educationService;
 
     @Autowired
-    private SkillService skillService;
+    private ISkillService skillService;
 
     @Autowired
-    private ExperienceService experienceService;
+    private IExperienceService experienceService;
 
     @PostMapping("/users/{userId}")
     public RedirectView update(@PathVariable Long userId, @ModelAttribute("user") User user) {
