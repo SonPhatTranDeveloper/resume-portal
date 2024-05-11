@@ -19,6 +19,11 @@ public class StringHelper {
     }
 
     public static String joinSkills(List<Skill> skills) {
+        // Check if there are any skill;
+        if (skills.isEmpty()) {
+            return "";
+        }
+
         StringBuilder builder = new StringBuilder();
 
         for (Skill skill : skills) {
