@@ -1,0 +1,18 @@
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <div th:replace="general :: headerfiles" th:remove="tag"></div>
+    <title>Resume Unavailable</title>
+    <link th:href="@{/styles/unavailable.css}" rel="stylesheet">
+</head>
+
+<body>
+<nav th:replace="general :: header"></nav>
+
+<main>
+    <section class="message">
+        <h1 class="message__title">Sorry</h1>
+        <p class="message__content">The user resume is not available for viewing. Please log in if you are the owner.</p>
+    </section>
+</main>
+</body>
+</html>

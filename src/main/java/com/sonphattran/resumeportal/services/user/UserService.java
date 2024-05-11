@@ -30,4 +30,9 @@ public class UserService implements IUserService {
         Optional<User> user = userRepository.findById(id);
         return user.orElseThrow(() -> new UserNotFoundException("User id not found: " + id));
     }
+
+    @Override
+    public void updateVisibility(Long id, boolean visibility) throws UserUpdateException {
+        userRepository.updateVisibility(id, visibility);
+    }
 }

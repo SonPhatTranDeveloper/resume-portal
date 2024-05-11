@@ -26,6 +26,9 @@ public class User {
     @Column
     private boolean active;
 
+    @Column(columnDefinition = "BOOLEAN DEFAULT FALSE")
+    private boolean visible;
+
     @Column(columnDefinition = "VARCHAR(255) DEFAULT 'Adam'")
     private String firstName;
 

@@ -20,4 +20,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     void updateName(@Param(value = "id") Long id,
                          @Param(value = "firstname") String firstname,
                          @Param(value = "lastname") String lastname);
+
+    @Transactional
+    @Modifying(clearAutomatically = true)
+    @Query("UPDATE User user SET user.visible = :visibility WHERE user.id = :id")
+    void updateVisibility(@Param(value = "id") Long id, @Param(value = "visibility") boolean visibility);
 }

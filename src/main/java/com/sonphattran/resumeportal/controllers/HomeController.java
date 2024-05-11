@@ -21,11 +21,21 @@ public class HomeController {
     @Autowired
     private IUserService userService;
 
+    private boolean isLoggedIn() {
+        Authentication authentication = authenticationFacade.getAuthentication();
+        return authentication != null && !(authentication instanceof AnonymousAuthenticationToken);
+    }
+
+    private User getLoggedInUser() {
+        Authentication authentication = authenticationFacade.getAuthentication();
+        String username = (String) authentication.getPrincipal();
+        return userService.findUserByName(username);
+    }
+
     @GetMapping("/")
     public String index(Model model) {
         // Check if user is logged in
-        Authentication authentication = authenticationFacade.getAuthentication();
-        boolean isLoggedIn = authentication != null && !(authentication instanceof AnonymousAuthenticationToken);
+        boolean isLoggedIn = isLoggedIn();
 
         // Pass to model
         model.addAttribute("isLoggedIn", isLoggedIn);
@@ -35,11 +45,7 @@ public class HomeController {
     @GetMapping("/home")
     public String home(Model model) {
         // Get the user details
-        Authentication authentication = authenticationFacade.getAuthentication();
-        String username = (String) authentication.getPrincipal();
-
-        // Find the user
-        User user = userService.findUserByName(username);
+        User user = getLoggedInUser();
 
         // Set the model details
         model.addAttribute("user", user);
@@ -49,15 +55,21 @@ public class HomeController {
 
     @GetMapping("/users/{userId}/view")
     public String userView(@PathVariable Long userId, Model model) {
-        // Find the user with specific id
-        User user = userService.findUserById(userId);
+        // Find the owner with specific id
+        User owner = userService.findUserById(userId);
+        User loggedInUser = getLoggedInUser();
 
-        // Add to model
-        model.addAttribute("user", user);
+        // Check if owner is owner or profile is public
+        if (owner.isVisible() || owner.getId() == loggedInUser.getId()) {
+            // Add to model
+            model.addAttribute("user", owner);
 
-        // Join the skills
-        String skills = StringHelper.joinSkills(user.getSkills());
-        model.addAttribute("skills", skills);
-        return "home/resume";
+            // Join the skills
+            String skills = StringHelper.joinSkills(owner.getSkills());
+            model.addAttribute("skills", skills);
+            return "home/resume";
+        } else {
+            return "home/unavailable";
+        }
     }
 }

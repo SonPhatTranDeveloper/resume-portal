@@ -3,7 +3,6 @@ package com.sonphattran.resumeportal.services.user;
 import com.sonphattran.resumeportal.models.Education;
 import com.sonphattran.resumeportal.repositories.EducationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

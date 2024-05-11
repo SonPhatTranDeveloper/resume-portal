@@ -1,0 +1,17 @@
+.message {
+    width: 80%;
+    margin: 0 auto;
+    padding: 3rem 0;
+    font-family: "Poppins", sans-serif;
+}
+
+.message__title {
+    font-size: 5rem;
+    color: #f77f00;
+    margin-bottom: 3rem;
+}
+
+.message__content {
+    font-weight: 300;
+    font-size: 2rem;
+}

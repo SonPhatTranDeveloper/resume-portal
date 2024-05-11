@@ -181,4 +181,10 @@ public class UpdateController {
         experienceService.deleteExperienceById(experienceId);
         return new RedirectView("/home#experiences");
     }
+
+    @PostMapping("/users/{userId}/visibility")
+    public RedirectView updateVisibility(@PathVariable Long userId, @ModelAttribute("user") User user) {
+        userService.updateVisibility(userId, user.isVisible());
+        return new RedirectView("/home#visibility-section");
+    }
 }

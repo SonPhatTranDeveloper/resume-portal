@@ -17,6 +17,19 @@
 
                 <a class="home__view-button" th:href="@{/users/{path}/view(path = ${user.getId()})}">View Resume</a>
 
+                <form class="education__form" id="visibility-section" th:action="@{/users/{path}/visibility(path = ${user.getId()})}" th:object="${user}"  method="post">
+                    <label class="form__select__label" for="visibility">Change resume visibility</label>
+                    <div class="form__row">
+                        <select class="form__select" th:field="*{visible}" name="visibility" id="visibility">
+                            <option th:value="true" th:text="'Visible'"></option>
+                            <option th:value="false" th:text="'Not Visible'"></option>
+                        </select>
+                    </div>
+                    <div class="form__button-holder">
+                        <button class="form__button btn" type="submit">Update</button>
+                    </div>
+                </form>
+
                 <h2 class="home__subtitle">
                     <th:block th:if="${user.isUpdated()}" th:text="'Modify your information if necessary'"></th:block>
                     <th:block th:unless="${user.isUpdated()}" th:text="'Get started by filling in your information'"></th:block>
