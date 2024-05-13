@@ -26,6 +26,12 @@
                                     You have been logged out.
                                 </div>
                             </div>
+
+                            <div class="form__block">
+                                <div th:if="${param.registration}" class="alert alert-success">
+                                    You have successfully registered an account.
+                                </div>
+                            </div>
     
                             <div class="form__block">
                                 <label class="form-item__label" for="username">Username</label>

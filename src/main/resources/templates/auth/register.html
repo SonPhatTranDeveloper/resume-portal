@@ -1,0 +1,46 @@
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <div th:replace="general :: headerfiles" th:remove="tag"></div>
+    <title>Sign In</title>
+    <link th:href="@{/styles/register.css}" rel="stylesheet">
+</head>
+
+<body>
+<nav th:replace="general :: header"></nav>
+
+<main>
+    <section class="signin">
+        <h1 class="signin__title">Create a new account</h1>
+
+        <div th:fragment="content">
+            <form name="f" th:action="@{/register}" method="post" th:object="${formModel}">
+                <fieldset>
+                    <div class="form__block">
+                        <div th:if="${param.error}" class="alert alert-error" th:text="${param.error}"></div>
+                    </div>
+
+                    <div class="form__block">
+                        <label class="form-item__label" for="username">Username</label>
+                        <input class="form-item__input" type="text" id="username" name="username" placeholder="Enter username" th:field="*{username}"/>
+                    </div>
+
+                    <div class="form__block">
+                        <label class="form-item__label" for="password">Password</label>
+                        <input class="form-item__input" type="password" id="password" name="password" placeholder="Enter password" th:field="*{password}"/>
+                    </div>
+
+                    <div class="form__block">
+                        <label class="form-item__label" for="repeat-password">Re-enter Password</label>
+                        <input class="form-item__input" type="password" id="repeat-password" name="repeat-password" placeholder="Enter password again" th:field="*{confirmPassword}"/>
+                    </div>
+
+                    <div class="form__block">
+                        <button class="form__button btn" type="submit">Register</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </section>
+</main>
+</body>
+</html>

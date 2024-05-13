@@ -12,6 +12,7 @@
         </div>
 
         <a th:href="@{/signin}" class="navigation__link" th:unless="${isLoggedIn}">Sign In</a>
+        <a th:href="@{/register}" class="navigation__link" th:unless="${isLoggedIn}">Register</a>
         <a th:href="@{/signout}" class="navigation__link" th:if="${isLoggedIn}">Sign Out</a>
     </nav>
 

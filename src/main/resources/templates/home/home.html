@@ -11,8 +11,8 @@
         <main>
             <section class="home">
                 <h1 class="home__title">
-                    <th:block th:if="${user.isUpdated()}" th:text="'Welcome back, ' + ${user.getFirstName()}"></th:block>
-                    <th:block th:unless="${user.isUpdated()}" th:text="'Hello, newcomer'"></th:block>
+                    <th:block th:unless="${user.firstName == null || user.firstName.isBlank()}" th:text="'Welcome back, ' + ${user.getFirstName()}"></th:block>
+                    <th:block th:if="${user.firstName == null || user.firstName.isBlank()}" th:text="'Hello, newcomer'"></th:block>
                 </h1>
 
                 <a class="home__view-button" th:href="@{/users/{path}/view(path = ${user.getId()})}">View Resume</a>

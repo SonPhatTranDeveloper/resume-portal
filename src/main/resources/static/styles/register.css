@@ -1,0 +1,63 @@
+/* Styling the title */
+.signin {
+    margin: 3rem auto;
+    width: 60%;
+}
+
+.signin__title {
+    font-family: "Poppins", sans-serif;
+    font-size: 3rem;
+    color: #F77F00;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+/* Styling the form */
+.form__block {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.form-item__label {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+.form-item__input {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    padding: 1rem;
+}
+
+.form__button {
+    display: block;
+    width: 100%;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.2rem;
+    background: #3A86FF;
+    color: #FFFFFF;
+    cursor: pointer;
+    border: none;
+    padding: 1rem 0;
+}
+
+/* Styling the alert */
+.alert {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.alert-error {
+    background: #FFCCD5;
+}
+
+.alert-success {
+    background: #FCEFB4;
+}

@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.AndRequestMatcher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -25,6 +24,7 @@ public class SecurityConfiguration {
                     auth.requestMatchers("/home*").authenticated()
                             .requestMatchers("/signin*").permitAll()
                             .requestMatchers("/signout*").permitAll()
+                            .requestMatchers("/register*").permitAll()
                             .requestMatchers("/styles/**",
                                     "/scripts/**",
                                     "/images/**",
