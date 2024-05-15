@@ -96,6 +96,7 @@
                                 <label class="form__label" for="details">Extra information</label>
                                 <textarea class="form__textarea" id="details" name="details" rows="5"
                                           required
+                                          placeholder="Start each bullet points with -- (two dashes)"
                                           th:field="*{education[__${itemState.index}__].details}"></textarea>
                             </div>
                         </div>
@@ -150,6 +151,7 @@
                                 <label class="form__label" for="desc">Description</label>
                                 <textarea class="form__textarea" id="desc" name="desc" rows="5"
                                           required
+                                          placeholder="Start each bullet points with -- (two dashes)"
                                           th:field="*{experiences[__${itemState.index}__].description}"></textarea>
                             </div>
                         </div>
@@ -248,6 +250,7 @@
                             <label class="form__label" for="new_desc_${experienceSectionCount}">Description</label>
                             <textarea class="form__textarea" id="new_desc_${experienceSectionCount}" name="new_desc" rows="5"
                                       required
+                                      placeholder="Start each bullet points with -- (two dashes)"
                                       th:text="'Description'"></textarea>
                         </div>
                     </div>
@@ -333,6 +336,7 @@
                     <div class="form__row-item">
                         <label class="form__label" for="new_details_${educationSectionCount}">Extra information</label>
                         <textarea class="form__textarea" id="new_details_${educationSectionCount}" name="new_details" rows="5" required
+                                  placeholder="Start each bullet points with -- (two dashes)"
                                   th:placeholder="'Enter new details'"></textarea>
                     </div>
                 </div>
