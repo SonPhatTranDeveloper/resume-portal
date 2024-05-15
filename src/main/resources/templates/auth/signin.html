@@ -6,7 +6,12 @@
     </head>
 
     <body>
-        <nav th:replace="general :: header"></nav>
+        <nav class="navigation">
+            <div class="navigation__title-holder">
+                <a th:href="@{/static}" class="navigation__title">Remy</a>
+            </div>
+            <a th:href="@{/register}" class="navigation__link">Register</a>
+        </nav>
 
         <main>
             <section class="signin">

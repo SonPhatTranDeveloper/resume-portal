@@ -22,7 +22,13 @@
             <h2 class="intro__subtitle">completely free</h2>
             <img class="intro__image" th:src="@{/images/remy.png}" alt="Remy Resume">
             <div class="buttons">
-                <a class="button" th:href="@{/home}">Get Started</a>
+                <th:block th:if="${isLoggedIn}">
+                    <a class="button" th:href="@{/home}">Edit resume</a>
+                </th:block>
+
+                <th:block th:unless="${isLoggedIn}">
+                    <a class="button" th:href="@{/signin}">Sign In</a>
+                </th:block>
             </div>
         </section>
     </main>
