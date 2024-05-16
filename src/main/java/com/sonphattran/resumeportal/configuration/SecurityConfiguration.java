@@ -15,6 +15,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfiguration {
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
     private CustomAuthenticationProvider customAuthenticationProvider;
 
     @Bean
@@ -41,10 +44,5 @@ public class SecurityConfiguration {
                         .deleteCookies("JSESSIONID")
                 )
                 .build();
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 }

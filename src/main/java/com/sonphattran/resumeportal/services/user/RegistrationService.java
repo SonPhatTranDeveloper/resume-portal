@@ -5,12 +5,16 @@ import com.sonphattran.resumeportal.helpers.PasswordValidator;
 import com.sonphattran.resumeportal.models.User;
 import com.sonphattran.resumeportal.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
 public class RegistrationService implements IRegistrationService {
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     @Autowired
     UserRepository userRepository;
 
@@ -47,6 +51,8 @@ public class RegistrationService implements IRegistrationService {
         }
 
         // Register new user
+        // Encode password
+        user.setPassword(passwordEncoder.encode(password));
         userRepository.save(user);
     }
 }
