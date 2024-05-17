@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.sonphattran</groupId>
     <artifactId>resume-portal</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>resume-portal</name>
     <description>resume-portal</description>
     <properties>
